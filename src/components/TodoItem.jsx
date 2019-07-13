@@ -5,21 +5,24 @@ import '../App.css';
 
 class TodoItem extends Component{
 
-    getStyle = (todo) => {
+    getStyle = (completed) => {
         return {
             margin:'auto',
             padding:'15px',
-            textDecoration: todo.completed ? 'line-through' : 'none',
+            textDecoration: completed ? 'line-through' : 'none',
             background: '#f4f4f4',
             borderBottom:'1px #ccc dotted'
         }
     }
 
     render(){
-        let todo = this.props.todo;
+        const { id, title,completed} = this.props.todo;
         return(
-            <div style={this.getStyle(todo)}>
-                <p>{todo.title}</p>
+            <div style={this.getStyle(completed)}>
+                <p>
+                    <input type="checkbox" onChange={this.props.markComplete.bind(this,id)}/> {' '}
+                    {title}
+                </p>
             </div>
         )
     }
