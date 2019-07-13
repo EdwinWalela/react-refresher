@@ -6,16 +6,21 @@ import '../App.css';
 
 class Todos extends Component{
 
-    render(){
-        return this.props.todos.map((todo)=>(
-            <TodoItem key={todo.id} todo={todo}  markComplete={this.props.markComplete}/>
-        ))
-    }
+	render(){
+		return this.props.todos.map((todo)=>(
+			<TodoItem
+				key = {todo.id}
+				todo = {todo}
+				markComplete = {this.props.markComplete}
+				deleteItem = {this.props.deleteItem}
+			/>
+		))
+	}
 }
 
 // PropTypes
 Todos.propTypes = {
-    todos: PropTypes.array.isRequired
+	todos: PropTypes.array.isRequired
 }
 
 export default Todos;
