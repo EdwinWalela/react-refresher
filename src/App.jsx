@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Axios from 'axios';
 import uuid from 'uuid'
+
 import './App.css';
+
 import Todos from './components/Todos';
 import Header from './components/layout/Header.jsx';
 import AddTodo from './components/AddTodo';
@@ -14,6 +17,15 @@ class App extends Component{
 		todos:[
 			
 		]
+	}
+
+	componentWillMount() {
+		Axios.get('https://jsonplaceholder.typicode.com/todos?_limit=4')
+			.then(todos=>{
+				this.setState({
+						todos:todos.data
+					})
+				})
 	}
 
 	// Toggle Complete
