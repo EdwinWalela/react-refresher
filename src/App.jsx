@@ -40,7 +40,7 @@ class App extends Component{
 		})
 	}
 
-	// Deletw Item
+	// Delete Item
 	deleteItem = (id) => {
 		this.setState({
 			todos: this.state.todos.filter(todo=>{
@@ -50,14 +50,18 @@ class App extends Component{
 	}
 	
 	handleNewTodo = (title) =>{
-		const newTodo = {
-			id:uuid.v4(),
+		// Create new todo and post the data
+		Axios.post('https://jsonplaceholder.typicode.com/todos',{
 			title,
 			completed:false
-		}
-		this.setState({
-			todos: [...this.state.todos,newTodo]
 		})
+		.then(res=>{
+			// responds with the data created
+			this.setState({
+				todos: [...this.state.todos,res.data]
+			})
+		})
+		
 	}
 
 	render(){
