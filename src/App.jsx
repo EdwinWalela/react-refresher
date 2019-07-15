@@ -42,11 +42,15 @@ class App extends Component{
 
 	// Delete Item
 	deleteItem = (id) => {
-		this.setState({
-			todos: this.state.todos.filter(todo=>{
-					return todo.id != id
+		Axios
+			.delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
+			.then(res=>{
+				this.setState({
+					todos: this.state.todos.filter(todo=>{
+							return todo.id != id
+					})
+				})
 			})
-		})
 	}
 	
 	handleNewTodo = (title) =>{
@@ -69,25 +73,25 @@ class App extends Component{
 			<Router>
 				<div className="App">
 					<Header />
-					<Route 
-						exact path = "/" 
-						render = {props=>(
-							<React.Fragment>
-								<AddTodo 
-									handleNewTodo = {this.handleNewTodo}
-								/>
-								<Todos
-									todos = {this.state.todos}
-									markComplete = {this.markComplete}
-									deleteItem = {this.deleteItem}
-								/>	
-							</React.Fragment>
-						)}
-					/>
-					<Route
-						path="/about"
-						component={About}
-					/>
+						<Route 
+							exact path = "/" 
+							render = {props=>(
+								<React.Fragment>
+									<AddTodo 
+										handleNewTodo = {this.handleNewTodo}
+									/>
+									<Todos
+										todos = {this.state.todos}
+										markComplete = {this.markComplete}
+										deleteItem = {this.deleteItem}
+									/>	
+								</React.Fragment>
+							)}
+						/>
+						<Route
+							path="/about"
+							component={About}
+						/>
 				</div>
 			</Router>
 		);

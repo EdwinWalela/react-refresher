@@ -1,4 +1,5 @@
 import React, { Component }  from 'react';
+import PropTypes from 'prop-types';
 
 class AddTodo extends Component{
 
@@ -52,6 +53,12 @@ const btnStyle = {
 const inputStyle = {
     padding:'10px',
     width:'80%'
+}
+
+
+// PropTypes
+AddTodo.propTypes = {
+	addTodo: PropTypes.array.isRequired,
 }
 
 export default AddTodo;
