@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import uuid from 'uuid'
 import './App.css';
 import Todos from './components/Todos';
 import Header from './components/layout/Header.jsx';
@@ -8,21 +9,7 @@ class App extends Component{
 
 	state = {
 		todos:[
-			{
-				id:1,
-				title: 'Take out the trash',
-				completed:false
-			},
-			{
-				id:2,
-				title: 'Dinner with wife',
-				completed:false
-			},
-			{
-				id:3,
-				title: 'Meeting with client',
-				completed:false
-			}
+			
 		]
 	}
 
@@ -49,7 +36,7 @@ class App extends Component{
 	
 	handleNewTodo = (title) =>{
 		const newTodo = {
-			id:4,
+			id:uuid.v4(),
 			title,
 			completed:false
 		}
